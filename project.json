@@ -1,0 +1,29 @@
+{
+    "haxe-project": {
+        "name": "flixel-spine",
+        "targets": [
+            {
+                "name": "run mac",
+                "commands": {
+                    "build": "lime test mac",
+                    "hxml": "lime display mac"
+                }
+            },
+            {
+                "name": "run flash",
+                "commands": {
+                    "build": "lime test flash",
+                    "hxml": "lime display flash",
+                    "lint": "lime build flash"
+                }
+            },
+            {
+                "name": "run html5",
+                "commands": {
+                    "build": "lime test html5",
+                    "hxml": "lime display html5"
+                }
+            }
+        ]
+    }
+}
