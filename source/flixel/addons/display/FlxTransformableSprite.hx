@@ -11,36 +11,36 @@ class FlxTransformableSprite extends FlxSprite {
 
     public var transformMatrix:Matrix;
 
-	/**
-	 * WARNING: This will remove this sprite entirely. Use kill() if you
-	 * want to disable it temporarily only and reset() it later to revive it.
-	 * Used to clean up memory.
-	 */
-	override public function destroy():Void
-	{
-		super.destroy();
+    /**
+     * WARNING: This will remove this sprite entirely. Use kill() if you
+     * want to disable it temporarily only and reset() it later to revive it.
+     * Used to clean up memory.
+     */
+    override public function destroy():Void
+    {
+        super.destroy();
 
     } // destroy
 
-	override function drawComplex(camera:FlxCamera):Void
-	{
-		_frame.prepareMatrix(_matrix, FlxFrameAngle.ANGLE_0, checkFlipX(), checkFlipY());
-		_matrix.translate(-origin.x, -origin.y);
-		_matrix.scale(scale.x, scale.y);
+    override function drawComplex(camera:FlxCamera):Void
+    {
+        _frame.prepareMatrix(_matrix, FlxFrameAngle.ANGLE_0, checkFlipX(), checkFlipY());
+        _matrix.translate(-origin.x, -origin.y);
+        _matrix.scale(scale.x, scale.y);
 
-		if (bakedRotationAngle <= 0)
-		{
-			updateTrig();
+        if (bakedRotationAngle <= 0)
+        {
+            updateTrig();
 
-			if (angle != 0) {
-				_matrix.rotateWithTrig(_cosAngle, _sinAngle);
+            if (angle != 0) {
+                _matrix.rotateWithTrig(_cosAngle, _sinAngle);
             }
-		}
-		_point.addPoint(origin);
-		//if (isPixelPerfectRender(camera))
-		//	_point.floor();
+        }
+        _point.addPoint(origin);
+        //if (isPixelPerfectRender(camera))
+        //    _point.floor();
 
-		_matrix.translate(_point.x, _point.y);
+        _matrix.translate(_point.x, _point.y);
 
         if (transformMatrix != null) {
             _matrix.concat(transformMatrix);
@@ -48,18 +48,18 @@ class FlxTransformableSprite extends FlxSprite {
 
         camera.drawPixels(_frame, framePixels, _matrix, colorTransform, blend, antialiasing);
 
-	} //drawComplex
+    } //drawComplex
 
-	override public function isSimpleRender(?camera:FlxCamera):Bool
-	{
+    override public function isSimpleRender(?camera:FlxCamera):Bool
+    {
         if (FlxG.renderBlit) {
-			return super.isSimpleRender(camera) && transformMatrix == null;
-		}
-		else {
-			return false;
-		}
+            return super.isSimpleRender(camera) && transformMatrix == null;
+        }
+        else {
+            return false;
+        }
 
-	} //isSimpleRender
+    } //isSimpleRender
 
     override public function isOnScreen(?Camera:FlxCamera):Bool {
 
